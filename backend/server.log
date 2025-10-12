@@ -1,0 +1,26 @@
+2025-10-12 11:47:03,015 INFO Indexes ensured on sandbox_logs
+2025-10-12 11:47:03,017 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-12 11:47:03,026 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-12 11:47:03,026 INFO [33mPress CTRL+C to quit[0m
+2025-10-12 11:53:36,940 INFO Indexes ensured on sandbox_logs
+2025-10-12 11:53:36,942 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-12 11:53:36,950 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-12 11:53:36,951 INFO [33mPress CTRL+C to quit[0m
+2025-10-12 11:53:52,254 INFO NEW_LOG | source=kali-vm-01 level=INFO id=68eb49780fdefd96c6968eca
+2025-10-12 11:53:52,254 INFO 127.0.0.1 - - [12/Oct/2025 11:53:52] "[35m[1mPOST /log HTTP/1.1[0m" 201 -
+2025-10-12 12:07:31,087 INFO Indexes ensured on sandbox_logs
+2025-10-12 12:07:31,089 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-12 12:07:31,098 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-12 12:07:31,098 INFO [33mPress CTRL+C to quit[0m
+2025-10-12 12:07:43,181 INFO 127.0.0.1 - - [12/Oct/2025 12:07:43] "[31m[1mPOST /log HTTP/1.1[0m" 401 -
+2025-10-12 12:09:22,429 INFO NEW_LOG | source=kali-vm-test level=INFO id=68eb4d1a0fdefd96c6968ecb
+2025-10-12 12:09:22,430 INFO 127.0.0.1 - - [12/Oct/2025 12:09:22] "[35m[1mPOST /log HTTP/1.1[0m" 201 -
