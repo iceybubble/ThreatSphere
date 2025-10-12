@@ -9,7 +9,9 @@ from pymongo import MongoClient, ASCENDING, DESCENDING
 from bson.objectid import ObjectId
 from config import MONGO_URI, DB_NAME, LOG_FILE, PORT, API_KEY
 
+# -------------------------------
 # Flask app setup
+# -------------------------------
 app = Flask(__name__)
 CORS(app)  # allow cross-origin requests
 
@@ -43,7 +45,6 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)s %(message)s"
 )
-
 logger = logging.getLogger()
 logger.addHandler(JsonLogHandler())  # add JSON output to console
 
@@ -54,7 +55,7 @@ client = MongoClient(MONGO_URI)
 db = client[DB_NAME]
 logs_coll = db["sandbox_logs"]
 
-# Ensure indexes (idempotent)
+# Ensure indexes
 def ensure_indexes():
     logs_coll.create_index([("received_at", DESCENDING)])
     logs_coll.create_index([("level", ASCENDING)])
