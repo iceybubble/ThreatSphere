@@ -7,18 +7,28 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo import MongoClient, ASCENDING, DESCENDING
 from bson.objectid import ObjectId
+from werkzeug.utils import secure_filename
 from config import MONGO_URI, DB_NAME, LOG_FILE, PORT, API_KEY
 
 # -------------------------------
 # Flask app setup
 # -------------------------------
 app = Flask(__name__)
-CORS(app)  # allow cross-origin requests
+CORS(app)
+
+# -------------------------------
+# Upload directory setup
+# -------------------------------
+UPLOAD_FOLDER = os.path.join(os.getcwd(), "uploads")
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+ALLOWED_EXTENSIONS = {"pcap", "pcapng", "csv", "xml", "json", "txt"}
 
 # -------------------------------
 # JSON Logging Helper
 # -------------------------------
-log_pattern = re.compile(r'(?P<timestamp>[\d\-\s:,]+) (?P<level>[A-Z]+) (?P<message>.*)')
+log_pattern = re.compile(r"(?P<timestamp>[\d\-\s:,]+) (?P<level>[A-Z]+) (?P<message>.*)")
+
 
 def log_to_json(line):
     match = log_pattern.match(line)
@@ -26,16 +36,18 @@ def log_to_json(line):
         log_json = {
             "timestamp": match.group("timestamp").replace(" ", "T") + "Z",
             "level": match.group("level"),
-            "message": match.group("message").strip()
+            "message": match.group("message").strip(),
         }
         print(json.dumps(log_json))
     else:
         print(json.dumps({"raw": line.strip()}))
 
+
 class JsonLogHandler(logging.StreamHandler):
     def emit(self, record):
         log_entry = self.format(record)
         log_to_json(log_entry)
+
 
 # -------------------------------
 # Logging setup
@@ -43,10 +55,10 @@ class JsonLogHandler(logging.StreamHandler):
 logging.basicConfig(
     filename=LOG_FILE,
     level=logging.INFO,
-    format="%(asctime)s %(levelname)s %(message)s"
+    format="%(asctime)s %(levelname)s %(message)s",
 )
 logger = logging.getLogger()
-logger.addHandler(JsonLogHandler())  # add JSON output to console
+logger.addHandler(JsonLogHandler())
 
 # -------------------------------
 # MongoDB client
@@ -54,14 +66,16 @@ logger.addHandler(JsonLogHandler())  # add JSON output to console
 client = MongoClient(MONGO_URI)
 db = client[DB_NAME]
 logs_coll = db["sandbox_logs"]
+artifacts_coll = db["artifacts"]
 
 # Ensure indexes
 def ensure_indexes():
     logs_coll.create_index([("received_at", DESCENDING)])
     logs_coll.create_index([("level", ASCENDING)])
     logs_coll.create_index([("source", ASCENDING)])
-    logs_coll.create_index([("artifacts.file_hashes", ASCENDING)])
-    logging.info("Indexes ensured on sandbox_logs")
+    artifacts_coll.create_index([("uploaded_at", DESCENDING)])
+    logging.info("Indexes ensured on sandbox_logs & artifacts")
+
 
 ensure_indexes()
 
@@ -70,13 +84,23 @@ ensure_indexes()
 # -------------------------------
 def require_api_key(func):
     from functools import wraps
+
     @wraps(func)
     def wrapper(*args, **kwargs):
         key = request.headers.get("X-API-KEY") or request.args.get("api_key")
         if not key or key != API_KEY:
             return jsonify({"error": "unauthorized"}), 401
         return func(*args, **kwargs)
+
     return wrapper
+
+
+# -------------------------------
+# Helper for upload
+# -------------------------------
+def allowed_file(filename):
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 # -------------------------------
 # Routes
@@ -85,6 +109,8 @@ def require_api_key(func):
 def health():
     return jsonify({"status": "ok", "time": datetime.utcnow().isoformat() + "Z"}), 200
 
+
+# ---------- Log Receiver ----------
 @app.route("/log", methods=["POST"])
 @require_api_key
 def receive_log():
@@ -106,13 +132,49 @@ def receive_log():
         "network_calls": payload.get("network_calls", []),
         "artifacts": payload.get("artifacts", {}),
         "meta": payload.get("meta", {}),
-        "received_at": datetime.utcnow()
+        "received_at": datetime.utcnow(),
     }
 
     res = logs_coll.insert_one(doc)
-    logging.info(f"NEW_LOG | source={doc['source']} level={doc['level']} id={res.inserted_id}")
+    logging.info(
+        f"NEW_LOG | source={doc['source']} level={doc['level']} id={res.inserted_id}"
+    )
     return jsonify({"status": "ok", "id": str(res.inserted_id)}), 201
 
+
+# ---------- Upload Handler ----------
+@app.route("/upload", methods=["POST"])
+@require_api_key
+def upload_file():
+    if "file" not in request.files:
+        return jsonify({"error": "no file part"}), 400
+    file = request.files["file"]
+
+    if file.filename == "":
+        return jsonify({"error": "no selected file"}), 400
+
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        save_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+        file.save(save_path)
+
+        artifact_doc = {
+            "filename": filename,
+            "path": save_path,
+            "source": request.form.get("source", "unknown"),
+            "note": request.form.get("note", ""),
+            "size": os.path.getsize(save_path),
+            "uploaded_at": datetime.utcnow(),
+        }
+
+        artifacts_coll.insert_one(artifact_doc)
+        logging.info(f"NEW_ARTIFACT | {filename} uploaded from {artifact_doc['source']}")
+        return jsonify({"status": "ok", "filename": filename}), 201
+
+    return jsonify({"error": "invalid file type"}), 400
+
+
+# ---------- Retrieve recent logs ----------
 @app.route("/logs/recent", methods=["GET"])
 @require_api_key
 def recent_logs():
@@ -125,6 +187,8 @@ def recent_logs():
         out.append(d)
     return jsonify(out), 200
 
+
+# ---------- Query logs ----------
 @app.route("/logs/query", methods=["GET"])
 @require_api_key
 def query_logs():
@@ -161,6 +225,8 @@ def query_logs():
         out.append(d)
     return jsonify(out), 200
 
+
+# ---------- Fetch specific log ----------
 @app.route("/logs/<id>", methods=["GET"])
 @require_api_key
 def get_log(id):
@@ -174,6 +240,8 @@ def get_log(id):
     d["received_at"] = d["received_at"].isoformat() + "Z"
     return jsonify(d), 200
 
+
+# ---------- DB health ----------
 @app.route("/health/full", methods=["GET"])
 def full_health():
     try:
@@ -183,9 +251,10 @@ def full_health():
         logging.exception("DB health failed")
         return jsonify({"status": "error", "detail": str(e)}), 500
 
+
 # -------------------------------
 # Run server
 # -------------------------------
 if __name__ == "__main__":
-    logging.info("Starting ThreatSphere backend on 0.0.0.0:%d", PORT)
+    logging.info(f"Starting ThreatSphere backend on 0.0.0.0:{PORT}")
     app.run(host="0.0.0.0", port=PORT, debug=False)
