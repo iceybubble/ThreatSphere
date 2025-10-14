@@ -1456,3 +1456,10 @@
 2025-10-12 18:09:31,135 INFO 192.168.240.128 - - [12/Oct/2025 18:09:31] "[35m[1mPOST /log HTTP/1.1[0m" 201 -
 2025-10-12 18:10:04,867 INFO NEW_LOG | source=kali level=INFO id=68eba1a43f8a34519d8940b4
 2025-10-12 18:10:04,868 INFO 192.168.240.128 - - [12/Oct/2025 18:10:04] "[35m[1mPOST /log HTTP/1.1[0m" 201 -
+2025-10-14 09:12:22,440 INFO Indexes ensured on sandbox_logs & artifacts
+2025-10-14 09:12:22,444 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-14 09:12:23,833 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-14 09:12:23,833 INFO [33mPress CTRL+C to quit[0m
