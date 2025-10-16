@@ -1463,3 +1463,13 @@
  * Running on http://127.0.0.1:5000
  * Running on http://192.168.23.197:5000
 2025-10-14 09:12:23,833 INFO [33mPress CTRL+C to quit[0m
+2025-10-16 18:44:31,339 INFO Indexes ensured on sandbox_logs & artifacts
+2025-10-16 18:44:31,345 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-16 18:44:31,372 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-16 18:44:31,372 INFO [33mPress CTRL+C to quit[0m
+2025-10-16 18:46:50,815 INFO 127.0.0.1 - - [16/Oct/2025 18:46:50] "[31m[1mPOST /log HTTP/1.1[0m" 401 -
+2025-10-16 18:48:21,295 INFO NEW_LOG | source=unknown level=INFO id=68f0f09de06bdf9fdfb3b07f
+2025-10-16 18:48:21,296 INFO 127.0.0.1 - - [16/Oct/2025 18:48:21] "[35m[1mPOST /log HTTP/1.1[0m" 201 -
