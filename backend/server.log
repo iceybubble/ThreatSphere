@@ -1655,3 +1655,24 @@ Traceback (most recent call last):
 json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 2025-10-23 12:03:57,957 INFO 192.168.240.1 - - [23/Oct/2025 12:03:57] "[35m[1mPOST /upload HTTP/1.1[0m" 500 -
 2025-10-23 12:11:44,321 INFO 192.168.240.1 - - [23/Oct/2025 12:11:44] "[31m[1mPOST /upload HTTP/1.1[0m" 400 -
+2025-10-23 12:41:51,164 INFO Indexes ensured on sandbox_logs & artifacts
+2025-10-23 12:41:51,167 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-23 12:41:52,567 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-23 12:41:52,567 INFO [33mPress CTRL+C to quit[0m
+2025-10-23 12:59:54,107 INFO Indexes ensured on sandbox_logs & artifacts
+2025-10-23 12:59:54,110 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-23 12:59:55,617 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-23 12:59:55,617 INFO [33mPress CTRL+C to quit[0m
+2025-10-23 13:23:08,510 INFO Indexes ensured on sandbox_logs & artifacts
+2025-10-23 13:23:08,514 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-23 13:23:09,809 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-23 13:23:09,809 INFO [33mPress CTRL+C to quit[0m
