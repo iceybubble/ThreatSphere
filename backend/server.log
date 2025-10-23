@@ -1492,3 +1492,33 @@
  * Running on http://127.0.0.1:5000
  * Running on http://192.168.23.197:5000
 2025-10-16 20:11:47,476 INFO [33mPress CTRL+C to quit[0m
+2025-10-20 18:23:51,039 INFO Indexes ensured on sandbox_logs & artifacts
+2025-10-20 18:23:51,042 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-20 18:23:51,053 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-20 18:23:51,053 INFO [33mPress CTRL+C to quit[0m
+2025-10-23 10:03:45,314 INFO Indexes ensured on sandbox_logs & artifacts
+2025-10-23 10:03:45,318 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-23 10:03:45,334 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-23 10:03:45,335 INFO [33mPress CTRL+C to quit[0m
+2025-10-23 10:04:35,015 INFO 192.168.240.128 - - [23/Oct/2025 10:04:35] "GET /health HTTP/1.1" 200 -
+2025-10-23 10:05:36,146 INFO 192.168.240.128 - - [23/Oct/2025 10:05:36] "[31m[1mPOST /log HTTP/1.1[0m" 401 -
+2025-10-23 10:06:44,226 INFO 192.168.240.128 - - [23/Oct/2025 10:06:44] "[31m[1mPOST /log?api_key=test1234 HTTP/1.1[0m" 401 -
+2025-10-23 10:08:49,745 INFO 192.168.240.128 - - [23/Oct/2025 10:08:49] "GET /health HTTP/1.1" 200 -
+2025-10-23 10:09:00,456 INFO NEW_LOG | source=kali-test level=INFO id=68f9b164cb2ec47af359fbf0
+2025-10-23 10:09:00,457 INFO 192.168.240.128 - - [23/Oct/2025 10:09:00] "[35m[1mPOST /log HTTP/1.1[0m" 201 -
+2025-10-23 10:09:27,966 INFO NEW_ARTIFACT | safe_test.txt uploaded from kali-sandbox
+2025-10-23 10:09:27,967 INFO 192.168.240.128 - - [23/Oct/2025 10:09:27] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
+2025-10-23 10:16:39,994 INFO 192.168.240.128 - - [23/Oct/2025 10:16:39] "[33mPOST /upload-multi HTTP/1.1[0m" 404 -
+2025-10-23 10:19:39,708 INFO NEW_ARTIFACT | test.txt uploaded from unknown
+2025-10-23 10:19:39,709 INFO 192.168.240.128 - - [23/Oct/2025 10:19:39] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
+2025-10-23 10:22:12,865 INFO 192.168.240.128 - - [23/Oct/2025 10:22:12] "[31m[1mPOST /upload HTTP/1.1[0m" 400 -
+2025-10-23 10:25:07,508 INFO 192.168.240.128 - - [23/Oct/2025 10:25:07] "[31m[1mPOST /upload HTTP/1.1[0m" 400 -
+2025-10-23 10:31:25,151 INFO 192.168.240.128 - - [23/Oct/2025 10:31:25] "[31m[1mPOST /upload HTTP/1.1[0m" 400 -
+2025-10-23 10:38:20,165 INFO NEW_ARTIFACT | capture.pcap uploaded from kali-wireshark
+2025-10-23 10:38:20,166 INFO 192.168.240.128 - - [23/Oct/2025 10:38:20] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
