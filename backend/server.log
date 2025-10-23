@@ -1522,3 +1522,136 @@
 2025-10-23 10:31:25,151 INFO 192.168.240.128 - - [23/Oct/2025 10:31:25] "[31m[1mPOST /upload HTTP/1.1[0m" 400 -
 2025-10-23 10:38:20,165 INFO NEW_ARTIFACT | capture.pcap uploaded from kali-wireshark
 2025-10-23 10:38:20,166 INFO 192.168.240.128 - - [23/Oct/2025 10:38:20] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
+2025-10-23 10:47:03,271 INFO Indexes ensured on sandbox_logs & artifacts
+2025-10-23 10:47:03,274 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-23 10:47:04,647 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-23 10:47:04,648 INFO [33mPress CTRL+C to quit[0m
+2025-10-23 10:55:10,633 INFO 192.168.240.128 - - [23/Oct/2025 10:55:10] "[31m[1mPOST /upload HTTP/1.1[0m" 401 -
+2025-10-23 11:00:16,260 INFO NEW_ARTIFACT | capture_pretty.json uploaded from kali-wireshark
+2025-10-23 11:00:16,261 INFO 192.168.240.128 - - [23/Oct/2025 11:00:16] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
+2025-10-23 11:07:40,305 INFO Indexes ensured on sandbox_logs, artifacts & network_logs
+2025-10-23 11:07:40,308 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-23 11:07:41,699 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-23 11:07:41,699 INFO [33mPress CTRL+C to quit[0m
+2025-10-23 11:07:42,931 INFO NEW_ARTIFACT | capture_test_pretty.json uploaded from kali-wireshark
+2025-10-23 11:07:42,932 ERROR Failed to insert capture_test_pretty.json into network_logs: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "D:\ThreatSphere\backend\server.py", line 168, in upload_file
+    data = json.load(f)
+  File "C:\Program Files\Python314\Lib\json\__init__.py", line 293, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "C:\Program Files\Python314\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Program Files\Python314\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\json\decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2025-10-23 11:07:42,936 INFO 192.168.240.128 - - [23/Oct/2025 11:07:42] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
+2025-10-23 11:12:13,784 INFO NEW_ARTIFACT | capture_test_pretty.json uploaded from kali-wireshark
+2025-10-23 11:12:13,786 INFO NEW_NETWORK_LOG | capture_test_pretty.json saved to MongoDB network_logs
+2025-10-23 11:12:13,787 INFO 192.168.240.128 - - [23/Oct/2025 11:12:13] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
+2025-10-23 11:16:38,426 INFO Indexes ensured on sandbox_logs & artifacts
+2025-10-23 11:16:38,428 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-23 11:16:39,713 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-23 11:16:39,713 INFO [33mPress CTRL+C to quit[0m
+2025-10-23 11:21:29,462 INFO NEW_LOG | capture_test_pretty.json uploaded to sandbox_logs from kali-wireshark
+2025-10-23 11:21:29,463 INFO 192.168.240.128 - - [23/Oct/2025 11:21:29] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
+2025-10-23 11:24:47,961 INFO 192.168.240.128 - - [23/Oct/2025 11:24:47] "[31m[1mPOST /upload HTTP/1.1[0m" 401 -
+2025-10-23 11:27:05,472 ERROR Failed to insert cap_01_pretty.json: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "D:\ThreatSphere\backend\server.py", line 154, in upload_file
+    capture_data = json.load(f)
+  File "C:\Program Files\Python314\Lib\json\__init__.py", line 293, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "C:\Program Files\Python314\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Program Files\Python314\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\json\decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2025-10-23 11:27:05,474 INFO 192.168.240.128 - - [23/Oct/2025 11:27:05] "[35m[1mPOST /upload HTTP/1.1[0m" 500 -
+2025-10-23 11:34:50,132 INFO NEW_LOG | cap_01_pretty.json uploaded to sandbox_logs from unknown
+2025-10-23 11:34:50,133 INFO 192.168.240.128 - - [23/Oct/2025 11:34:50] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
+2025-10-23 11:34:52,619 INFO NEW_LOG | cap_02_pretty.json uploaded to sandbox_logs from unknown
+2025-10-23 11:34:52,620 INFO 192.168.240.128 - - [23/Oct/2025 11:34:52] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
+2025-10-23 11:34:55,126 INFO NEW_LOG | cap_03_pretty.json uploaded to sandbox_logs from unknown
+2025-10-23 11:34:55,126 INFO 192.168.240.128 - - [23/Oct/2025 11:34:55] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
+2025-10-23 11:34:57,618 INFO NEW_LOG | cap_04_pretty.json uploaded to sandbox_logs from unknown
+2025-10-23 11:34:57,619 INFO 192.168.240.128 - - [23/Oct/2025 11:34:57] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
+2025-10-23 11:35:00,119 INFO NEW_LOG | cap_05_pretty.json uploaded to sandbox_logs from unknown
+2025-10-23 11:35:00,120 INFO 192.168.240.128 - - [23/Oct/2025 11:35:00] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
+2025-10-23 11:35:02,619 INFO NEW_LOG | cap_06_pretty.json uploaded to sandbox_logs from unknown
+2025-10-23 11:35:02,619 INFO 192.168.240.128 - - [23/Oct/2025 11:35:02] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
+2025-10-23 11:35:05,082 INFO NEW_LOG | cap_07_pretty.json uploaded to sandbox_logs from unknown
+2025-10-23 11:35:05,082 INFO 192.168.240.128 - - [23/Oct/2025 11:35:05] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
+2025-10-23 11:35:07,591 INFO NEW_LOG | cap_08_pretty.json uploaded to sandbox_logs from unknown
+2025-10-23 11:35:07,591 INFO 192.168.240.128 - - [23/Oct/2025 11:35:07] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
+2025-10-23 11:35:10,065 INFO NEW_LOG | cap_09_pretty.json uploaded to sandbox_logs from unknown
+2025-10-23 11:35:10,066 INFO 192.168.240.128 - - [23/Oct/2025 11:35:10] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
+2025-10-23 11:35:12,537 INFO NEW_LOG | cap_10_pretty.json uploaded to sandbox_logs from unknown
+2025-10-23 11:35:12,538 INFO 192.168.240.128 - - [23/Oct/2025 11:35:12] "[35m[1mPOST /upload HTTP/1.1[0m" 201 -
+2025-10-23 11:46:54,711 ERROR Failed to insert sysmon_20251023_114654.json: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "D:\ThreatSphere\backend\server.py", line 154, in upload_file
+    capture_data = json.load(f)
+  File "C:\Program Files\Python314\Lib\json\__init__.py", line 293, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "C:\Program Files\Python314\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Program Files\Python314\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\json\decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2025-10-23 11:46:54,714 INFO 192.168.240.1 - - [23/Oct/2025 11:46:54] "[35m[1mPOST /upload HTTP/1.1[0m" 500 -
+2025-10-23 11:47:39,229 INFO 192.168.240.1 - - [23/Oct/2025 11:47:39] "[31m[1mPOST /upload HTTP/1.1[0m" 401 -
+2025-10-23 11:54:49,313 INFO 192.168.240.1 - - [23/Oct/2025 11:54:49] "[31m[1mPOST /upload HTTP/1.1[0m" 400 -
+2025-10-23 12:01:20,579 INFO 192.168.240.1 - - [23/Oct/2025 12:01:20] "[31m[1mPOST /upload HTTP/1.1[0m" 400 -
+2025-10-23 12:02:38,364 INFO 192.168.240.1 - - [23/Oct/2025 12:02:38] "[31m[1mPOST /upload HTTP/1.1[0m" 400 -
+2025-10-23 12:03:15,699 INFO 192.168.240.1 - - [23/Oct/2025 12:03:15] "[31m[1mPOST /upload HTTP/1.1[0m" 400 -
+2025-10-23 12:03:57,955 ERROR Failed to insert sysmon_20251023_120315.json: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "D:\ThreatSphere\backend\server.py", line 154, in upload_file
+    capture_data = json.load(f)
+  File "C:\Program Files\Python314\Lib\json\__init__.py", line 293, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "C:\Program Files\Python314\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Program Files\Python314\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314\Lib\json\decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2025-10-23 12:03:57,957 INFO 192.168.240.1 - - [23/Oct/2025 12:03:57] "[35m[1mPOST /upload HTTP/1.1[0m" 500 -
+2025-10-23 12:11:44,321 INFO 192.168.240.1 - - [23/Oct/2025 12:11:44] "[31m[1mPOST /upload HTTP/1.1[0m" 400 -

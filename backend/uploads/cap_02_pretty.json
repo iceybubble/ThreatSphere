@@ -1,0 +1,264 @@
+[
+    {
+        "_index": "packets-2025-10-23",
+        "_type": "doc",
+        "_score": null,
+        "_source": {
+            "layers": {
+                "frame": {
+                    "frame.section_number": "1",
+                    "frame.interface_id": "0",
+                    "frame.interface_id_tree": {
+                        "frame.interface_name": "eth0"
+                    },
+                    "frame.encap_type": "1",
+                    "frame.time": "Oct 23, 2025 02:04:51.499662802 EDT",
+                    "frame.time_utc": "Oct 23, 2025 06:04:51.499662802 UTC",
+                    "frame.time_epoch": "1761199491.499662802",
+                    "frame.offset_shift": "0.000000000",
+                    "frame.time_delta": "0.000000000",
+                    "frame.time_delta_displayed": "0.000000000",
+                    "frame.time_relative": "0.000000000",
+                    "frame.number": "1",
+                    "frame.len": "81",
+                    "frame.cap_len": "81",
+                    "frame.marked": "0",
+                    "frame.ignored": "0",
+                    "frame.protocols": "eth:ethertype:ip:udp:dns"
+                },
+                "eth": {
+                    "eth.dst": "00:50:56:c0:00:01",
+                    "eth.dst_tree": {
+                        "eth.dst_resolved": "VMware_c0:00:01",
+                        "eth.dst.oui": "20566",
+                        "eth.dst.oui_resolved": "VMware, Inc.",
+                        "eth.dst.lg": "0",
+                        "eth.dst.ig": "0",
+                        "eth.addr": "00:50:56:c0:00:01",
+                        "eth.addr_resolved": "VMware_c0:00:01",
+                        "eth.addr.oui": "20566",
+                        "eth.addr.oui_resolved": "VMware, Inc.",
+                        "eth.lg": "0",
+                        "eth.ig": "0"
+                    },
+                    "eth.src": "00:0c:29:fb:b5:1e",
+                    "eth.src_tree": {
+                        "eth.src_resolved": "VMware_fb:b5:1e",
+                        "eth.src.oui": "3113",
+                        "eth.src.oui_resolved": "VMware, Inc.",
+                        "eth.src.lg": "0",
+                        "eth.src.ig": "0",
+                        "eth.addr": "00:0c:29:fb:b5:1e",
+                        "eth.addr_resolved": "VMware_fb:b5:1e",
+                        "eth.addr.oui": "3113",
+                        "eth.addr.oui_resolved": "VMware, Inc.",
+                        "eth.lg": "0",
+                        "eth.ig": "0"
+                    },
+                    "eth.type": "0x0800",
+                    "eth.stream": "0"
+                },
+                "ip": {
+                    "ip.version": "4",
+                    "ip.hdr_len": "20",
+                    "ip.dsfield": "0x00",
+                    "ip.dsfield_tree": {
+                        "ip.dsfield.dscp": "0",
+                        "ip.dsfield.ecn": "0"
+                    },
+                    "ip.len": "67",
+                    "ip.id": "0x945d",
+                    "ip.flags": "0x02",
+                    "ip.flags_tree": {
+                        "ip.flags.rb": "0",
+                        "ip.flags.df": "1",
+                        "ip.flags.mf": "0"
+                    },
+                    "ip.frag_offset": "0",
+                    "ip.ttl": "64",
+                    "ip.proto": "17",
+                    "ip.checksum": "0x4479",
+                    "ip.checksum.status": "2",
+                    "ip.src": "192.168.240.128",
+                    "ip.addr": "192.168.240.1",
+                    "ip.src_host": "192.168.240.128",
+                    "ip.host": "192.168.240.1",
+                    "ip.dst": "192.168.240.1",
+                    "ip.dst_host": "192.168.240.1",
+                    "ip.stream": "0"
+                },
+                "udp": {
+                    "udp.srcport": "33896",
+                    "udp.dstport": "53",
+                    "udp.port": "53",
+                    "udp.length": "47",
+                    "udp.checksum": "0x6214",
+                    "udp.checksum.status": "2",
+                    "udp.stream": "0",
+                    "udp.stream.pnum": "1",
+                    "Timestamps": {
+                        "udp.time_relative": "0.000000000",
+                        "udp.time_delta": "0.000000000"
+                    },
+                    "udp.payload": "ca:18:01:00:00:01:00:00:00:00:00:00:01:32:06:64:65:62:69:61:6e:04:70:6f:6f:6c:03:6e:74:70:03:6f:72:67:00:00:01:00:01"
+                },
+                "dns": {
+                    "dns.id": "0xca18",
+                    "dns.flags": "0x0100",
+                    "dns.flags_tree": {
+                        "dns.flags.response": "0",
+                        "dns.flags.opcode": "0",
+                        "dns.flags.truncated": "0",
+                        "dns.flags.recdesired": "1",
+                        "dns.flags.z": "0",
+                        "dns.flags.checkdisable": "0"
+                    },
+                    "dns.count.queries": "1",
+                    "dns.count.answers": "0",
+                    "dns.count.auth_rr": "0",
+                    "dns.count.add_rr": "0",
+                    "Queries": {
+                        "2.debian.pool.ntp.org: type A, class IN": {
+                            "dns.qry.name": "2.debian.pool.ntp.org",
+                            "dns.qry.name.len": "21",
+                            "dns.count.labels": "5",
+                            "dns.qry.type": "1",
+                            "dns.qry.class": "0x0001"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "_index": "packets-2025-10-23",
+        "_type": "doc",
+        "_score": null,
+        "_source": {
+            "layers": {
+                "frame": {
+                    "frame.section_number": "1",
+                    "frame.interface_id": "0",
+                    "frame.interface_id_tree": {
+                        "frame.interface_name": "eth0"
+                    },
+                    "frame.encap_type": "1",
+                    "frame.time": "Oct 23, 2025 02:04:51.499803279 EDT",
+                    "frame.time_utc": "Oct 23, 2025 06:04:51.499803279 UTC",
+                    "frame.time_epoch": "1761199491.499803279",
+                    "frame.offset_shift": "0.000000000",
+                    "frame.time_delta": "0.000140477",
+                    "frame.time_delta_displayed": "0.000140477",
+                    "frame.time_relative": "0.000140477",
+                    "frame.number": "2",
+                    "frame.len": "81",
+                    "frame.cap_len": "81",
+                    "frame.marked": "0",
+                    "frame.ignored": "0",
+                    "frame.protocols": "eth:ethertype:ip:udp:dns"
+                },
+                "eth": {
+                    "eth.dst": "00:50:56:c0:00:01",
+                    "eth.dst_tree": {
+                        "eth.dst_resolved": "VMware_c0:00:01",
+                        "eth.dst.oui": "20566",
+                        "eth.dst.oui_resolved": "VMware, Inc.",
+                        "eth.dst.lg": "0",
+                        "eth.dst.ig": "0",
+                        "eth.addr": "00:50:56:c0:00:01",
+                        "eth.addr_resolved": "VMware_c0:00:01",
+                        "eth.addr.oui": "20566",
+                        "eth.addr.oui_resolved": "VMware, Inc.",
+                        "eth.lg": "0",
+                        "eth.ig": "0"
+                    },
+                    "eth.src": "00:0c:29:fb:b5:1e",
+                    "eth.src_tree": {
+                        "eth.src_resolved": "VMware_fb:b5:1e",
+                        "eth.src.oui": "3113",
+                        "eth.src.oui_resolved": "VMware, Inc.",
+                        "eth.src.lg": "0",
+                        "eth.src.ig": "0",
+                        "eth.addr": "00:0c:29:fb:b5:1e",
+                        "eth.addr_resolved": "VMware_fb:b5:1e",
+                        "eth.addr.oui": "3113",
+                        "eth.addr.oui_resolved": "VMware, Inc.",
+                        "eth.lg": "0",
+                        "eth.ig": "0"
+                    },
+                    "eth.type": "0x0800",
+                    "eth.stream": "0"
+                },
+                "ip": {
+                    "ip.version": "4",
+                    "ip.hdr_len": "20",
+                    "ip.dsfield": "0x00",
+                    "ip.dsfield_tree": {
+                        "ip.dsfield.dscp": "0",
+                        "ip.dsfield.ecn": "0"
+                    },
+                    "ip.len": "67",
+                    "ip.id": "0x945e",
+                    "ip.flags": "0x02",
+                    "ip.flags_tree": {
+                        "ip.flags.rb": "0",
+                        "ip.flags.df": "1",
+                        "ip.flags.mf": "0"
+                    },
+                    "ip.frag_offset": "0",
+                    "ip.ttl": "64",
+                    "ip.proto": "17",
+                    "ip.checksum": "0x4478",
+                    "ip.checksum.status": "2",
+                    "ip.src": "192.168.240.128",
+                    "ip.addr": "192.168.240.1",
+                    "ip.src_host": "192.168.240.128",
+                    "ip.host": "192.168.240.1",
+                    "ip.dst": "192.168.240.1",
+                    "ip.dst_host": "192.168.240.1",
+                    "ip.stream": "0"
+                },
+                "udp": {
+                    "udp.srcport": "33896",
+                    "udp.dstport": "53",
+                    "udp.port": "53",
+                    "udp.length": "47",
+                    "udp.checksum": "0x6214",
+                    "udp.checksum.status": "2",
+                    "udp.stream": "0",
+                    "udp.stream.pnum": "2",
+                    "Timestamps": {
+                        "udp.time_relative": "0.000140477",
+                        "udp.time_delta": "0.000140477"
+                    },
+                    "udp.payload": "d1:16:01:00:00:01:00:00:00:00:00:00:01:32:06:64:65:62:69:61:6e:04:70:6f:6f:6c:03:6e:74:70:03:6f:72:67:00:00:1c:00:01"
+                },
+                "dns": {
+                    "dns.id": "0xd116",
+                    "dns.flags": "0x0100",
+                    "dns.flags_tree": {
+                        "dns.flags.response": "0",
+                        "dns.flags.opcode": "0",
+                        "dns.flags.truncated": "0",
+                        "dns.flags.recdesired": "1",
+                        "dns.flags.z": "0",
+                        "dns.flags.checkdisable": "0"
+                    },
+                    "dns.count.queries": "1",
+                    "dns.count.answers": "0",
+                    "dns.count.auth_rr": "0",
+                    "dns.count.add_rr": "0",
+                    "Queries": {
+                        "2.debian.pool.ntp.org: type AAAA, class IN": {
+                            "dns.qry.name": "2.debian.pool.ntp.org",
+                            "dns.qry.name.len": "21",
+                            "dns.count.labels": "5",
+                            "dns.qry.type": "28",
+                            "dns.qry.class": "0x0001"
+                        }
+                    }
+                }
+            }
+        }
+    }
+]

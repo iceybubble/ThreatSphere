@@ -147,17 +147,38 @@ def upload_file():
         save_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
         file.save(save_path)
 
-        artifact_doc = {
-            "filename": filename,
-            "path": save_path,
-            "source": request.form.get("source", "unknown"),
-            "note": request.form.get("note", ""),
-            "size": os.path.getsize(save_path),
-            "uploaded_at": datetime.utcnow(),
-        }
+        # --- NEW: save JSON content to sandbox_logs if file is JSON ---
+        try:
+            if filename.lower().endswith(".json"):
+                with open(save_path) as f:
+                    capture_data = json.load(f)
+                log_doc = {
+                    "source": request.form.get("source", "unknown"),
+                    "note": request.form.get("note", ""),
+                    "filename": filename,
+                    "size": os.path.getsize(save_path),
+                    "capture": capture_data,
+                    "received_at": datetime.utcnow(),
+                    "level": "INFO",
+                }
+                logs_coll.insert_one(log_doc)
+                logging.info(f"NEW_LOG | {filename} uploaded to sandbox_logs from {log_doc['source']}")
+            else:
+                # Non-JSON files go to artifacts
+                artifact_doc = {
+                    "filename": filename,
+                    "path": save_path,
+                    "source": request.form.get("source", "unknown"),
+                    "note": request.form.get("note", ""),
+                    "size": os.path.getsize(save_path),
+                    "uploaded_at": datetime.utcnow(),
+                }
+                artifacts_coll.insert_one(artifact_doc)
+                logging.info(f"NEW_ARTIFACT | {filename} uploaded from {artifact_doc['source']}")
+        except Exception as e:
+            logging.exception(f"Failed to insert {filename}: {e}")
+            return jsonify({"error": "failed to process file", "detail": str(e)}), 500
 
-        artifacts_coll.insert_one(artifact_doc)
-        logging.info(f"NEW_ARTIFACT | {filename} uploaded from {artifact_doc['source']}")
         return jsonify({"status": "ok", "filename": filename}), 201
 
     return jsonify({"error": "invalid file type"}), 400
@@ -232,9 +253,6 @@ def full_health():
         logging.exception("DB health failed")
         return jsonify({"status": "error", "detail": str(e)}), 500
 
-# -------------------------------
-# Run server
-# -------------------------------
 if __name__ == "__main__":
     PORT = int(os.getenv("PORT", 5000))
     logging.info(f"Starting ThreatSphere backend on 0.0.0.0:{PORT}")
