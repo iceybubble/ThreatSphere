@@ -1676,3 +1676,10 @@ json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
  * Running on http://127.0.0.1:5000
  * Running on http://192.168.23.197:5000
 2025-10-23 13:23:09,809 INFO [33mPress CTRL+C to quit[0m
+2025-10-23 13:55:33,032 INFO Indexes ensured on sandbox_logs & artifacts
+2025-10-23 13:55:33,034 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-23 13:55:34,411 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-23 13:55:34,411 INFO [33mPress CTRL+C to quit[0m

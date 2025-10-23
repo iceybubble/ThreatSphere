@@ -3,3 +3,4 @@ flask-cors==6.0.1
 pymongo==4.6.1
 Werkzeug==2.3.8
 python-dotenv==1.0.0
+gunicorn==23.0.0
