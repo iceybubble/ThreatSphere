@@ -7,6 +7,7 @@ from flask_cors import CORS
 from pymongo import MongoClient, DESCENDING
 from bson.objectid import ObjectId
 from werkzeug.utils import secure_filename
+from flask import render_template
 
 # -------------------------------
 # Config from env
@@ -161,6 +162,10 @@ def full_health():
     except Exception as e:
         logging.exception("DB health failed")
         return jsonify({"status": "error", "detail": str(e)}), 500
+    
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 # -------------------------------
 # Run app

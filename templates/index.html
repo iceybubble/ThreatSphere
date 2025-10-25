@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ThreatSphere Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <h1>🧠 ThreatSphere Dashboard</h1>
+
+  <section id="overview">
+    <h2>Overview</h2>
+    <div class="stats">
+      <div class="card" id="totalLogs">Total Logs: --</div>
+      <div class="card" id="malwareCount">Malware Detections: --</div>
+      <div class="card" id="categoryCount">Categories: --</div>
+    </div>
+  </section>
+
+  <section id="latestLogs">
+    <h2>🕵️ Latest Logs</h2>
+    <table id="logsTable">
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>Category</th>
+          <th>Message</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section id="malware">
+    <h2>☣️ Detected Malware</h2>
+    <ul id="malwareList"></ul>
+  </section>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

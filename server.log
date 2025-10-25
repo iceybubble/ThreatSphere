@@ -1683,3 +1683,96 @@ json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
  * Running on http://127.0.0.1:5000
  * Running on http://192.168.23.197:5000
 2025-10-23 13:55:34,411 INFO [33mPress CTRL+C to quit[0m
+2025-10-25 18:26:56,197 INFO Indexes ensured on sandbox_logs & artifacts
+2025-10-25 18:26:56,200 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-25 18:26:56,213 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-25 18:26:56,213 INFO [33mPress CTRL+C to quit[0m
+2025-10-25 18:28:43,179 INFO Indexes ensured on sandbox_logs & artifacts
+2025-10-25 18:28:43,180 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-25 18:28:43,190 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-25 18:28:43,190 INFO [33mPress CTRL+C to quit[0m
+2025-10-25 18:29:14,721 INFO 127.0.0.1 - - [25/Oct/2025 18:29:14] "[33mGET / HTTP/1.1[0m" 404 -
+2025-10-25 18:29:14,766 INFO 127.0.0.1 - - [25/Oct/2025 18:29:14] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-10-25 18:33:50,148 INFO Indexes ensured on sandbox_logs & artifacts
+2025-10-25 18:33:50,150 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-25 18:33:50,160 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-25 18:33:50,160 INFO [33mPress CTRL+C to quit[0m
+2025-10-25 18:41:48,298 INFO Indexes ensured on sandbox_logs & artifacts
+2025-10-25 18:41:48,300 INFO Starting ThreatSphere backend on 0.0.0.0:5000
+2025-10-25 18:41:48,311 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.23.197:5000
+2025-10-25 18:41:48,311 INFO [33mPress CTRL+C to quit[0m
+2025-10-25 18:42:00,845 INFO 127.0.0.1 - - [25/Oct/2025 18:42:00] "GET / HTTP/1.1" 200 -
+2025-10-25 18:42:00,950 INFO 127.0.0.1 - - [25/Oct/2025 18:42:00] "GET /static/style.css HTTP/1.1" 200 -
+2025-10-25 18:42:00,957 INFO 127.0.0.1 - - [25/Oct/2025 18:42:00] "GET /static/script.js HTTP/1.1" 200 -
+2025-10-25 18:42:00,984 INFO 127.0.0.1 - - [25/Oct/2025 18:42:00] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:42:00,985 INFO 127.0.0.1 - - [25/Oct/2025 18:42:00] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:42:00,987 INFO 127.0.0.1 - - [25/Oct/2025 18:42:00] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:42:11,660 INFO 127.0.0.1 - - [25/Oct/2025 18:42:11] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:42:11,660 INFO 127.0.0.1 - - [25/Oct/2025 18:42:11] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:42:11,662 INFO 127.0.0.1 - - [25/Oct/2025 18:42:11] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:42:20,999 INFO 127.0.0.1 - - [25/Oct/2025 18:42:20] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:42:21,000 INFO 127.0.0.1 - - [25/Oct/2025 18:42:21] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:42:21,001 INFO 127.0.0.1 - - [25/Oct/2025 18:42:21] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:42:30,985 INFO 127.0.0.1 - - [25/Oct/2025 18:42:30] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:42:30,985 INFO 127.0.0.1 - - [25/Oct/2025 18:42:30] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:42:30,987 INFO 127.0.0.1 - - [25/Oct/2025 18:42:30] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:42:40,995 INFO 127.0.0.1 - - [25/Oct/2025 18:42:40] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:42:40,995 INFO 127.0.0.1 - - [25/Oct/2025 18:42:40] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:42:40,996 INFO 127.0.0.1 - - [25/Oct/2025 18:42:40] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:42:51,665 INFO 127.0.0.1 - - [25/Oct/2025 18:42:51] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:42:51,667 INFO 127.0.0.1 - - [25/Oct/2025 18:42:51] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:42:51,668 INFO 127.0.0.1 - - [25/Oct/2025 18:42:51] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:43:01,663 INFO 127.0.0.1 - - [25/Oct/2025 18:43:01] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:43:01,665 INFO 127.0.0.1 - - [25/Oct/2025 18:43:01] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:43:01,666 INFO 127.0.0.1 - - [25/Oct/2025 18:43:01] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:43:11,656 INFO 127.0.0.1 - - [25/Oct/2025 18:43:11] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:43:11,657 INFO 127.0.0.1 - - [25/Oct/2025 18:43:11] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:43:11,658 INFO 127.0.0.1 - - [25/Oct/2025 18:43:11] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:43:21,663 INFO 127.0.0.1 - - [25/Oct/2025 18:43:21] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:43:21,664 INFO 127.0.0.1 - - [25/Oct/2025 18:43:21] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:43:21,665 INFO 127.0.0.1 - - [25/Oct/2025 18:43:21] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:43:31,664 INFO 127.0.0.1 - - [25/Oct/2025 18:43:31] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:43:31,665 INFO 127.0.0.1 - - [25/Oct/2025 18:43:31] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:43:31,666 INFO 127.0.0.1 - - [25/Oct/2025 18:43:31] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:43:41,653 INFO 127.0.0.1 - - [25/Oct/2025 18:43:41] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:43:41,654 INFO 127.0.0.1 - - [25/Oct/2025 18:43:41] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:43:41,656 INFO 127.0.0.1 - - [25/Oct/2025 18:43:41] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:44:17,658 INFO 127.0.0.1 - - [25/Oct/2025 18:44:17] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:44:17,658 INFO 127.0.0.1 - - [25/Oct/2025 18:44:17] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:44:17,659 INFO 127.0.0.1 - - [25/Oct/2025 18:44:17] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:45:17,655 INFO 127.0.0.1 - - [25/Oct/2025 18:45:17] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:45:17,656 INFO 127.0.0.1 - - [25/Oct/2025 18:45:17] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:45:17,656 INFO 127.0.0.1 - - [25/Oct/2025 18:45:17] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:46:17,655 INFO 127.0.0.1 - - [25/Oct/2025 18:46:17] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:46:17,655 INFO 127.0.0.1 - - [25/Oct/2025 18:46:17] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:46:17,656 INFO 127.0.0.1 - - [25/Oct/2025 18:46:17] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:47:17,662 INFO 127.0.0.1 - - [25/Oct/2025 18:47:17] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:47:17,663 INFO 127.0.0.1 - - [25/Oct/2025 18:47:17] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:47:17,663 INFO 127.0.0.1 - - [25/Oct/2025 18:47:17] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:48:17,662 INFO 127.0.0.1 - - [25/Oct/2025 18:48:17] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:48:17,663 INFO 127.0.0.1 - - [25/Oct/2025 18:48:17] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:48:17,663 INFO 127.0.0.1 - - [25/Oct/2025 18:48:17] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:49:17,665 INFO 127.0.0.1 - - [25/Oct/2025 18:49:17] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:49:17,666 INFO 127.0.0.1 - - [25/Oct/2025 18:49:17] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:49:17,667 INFO 127.0.0.1 - - [25/Oct/2025 18:49:17] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:50:17,654 INFO 127.0.0.1 - - [25/Oct/2025 18:50:17] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:50:17,654 INFO 127.0.0.1 - - [25/Oct/2025 18:50:17] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:50:17,655 INFO 127.0.0.1 - - [25/Oct/2025 18:50:17] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:50:30,610 INFO 127.0.0.1 - - [25/Oct/2025 18:50:30] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:50:30,611 INFO 127.0.0.1 - - [25/Oct/2025 18:50:30] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:50:30,613 INFO 127.0.0.1 - - [25/Oct/2025 18:50:30] "[33mGET /malware HTTP/1.1[0m" 404 -
+2025-10-25 18:50:40,995 INFO 127.0.0.1 - - [25/Oct/2025 18:50:40] "[33mGET /logs HTTP/1.1[0m" 404 -
+2025-10-25 18:50:40,995 INFO 127.0.0.1 - - [25/Oct/2025 18:50:40] "[33mGET /categories HTTP/1.1[0m" 404 -
+2025-10-25 18:50:40,996 INFO 127.0.0.1 - - [25/Oct/2025 18:50:40] "[33mGET /malware HTTP/1.1[0m" 404 -
