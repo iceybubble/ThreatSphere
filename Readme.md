@@ -19,13 +19,15 @@ The goal of ThreatSphere is to enable researchers, analysts, and cybersecurity l
 
 
 💡 Why We’re Building ThreatSphere
+
+```
 Goal	                                            Description
 🧱 Safe malware testing	        Execute ransomware or trojans inside an isolated environment without endangering your real system.
 ⚙️ Automated logging	        Automatically capture file, process, and network events using a Python logging backend.
 📁 Data-driven analysis	        Store logs in MongoDB for correlation, searching, and deeper investigation.
 🧪 Reproducible lab	            Build a repeatable setup for testing multiple samples consistently.
 🎓 Educational tool	            Help students and professionals understand malware behavior step-by-step.
-
+```
 
 🏗️ Core Components
 
@@ -70,6 +72,8 @@ Automatically run multiple malware samples.
 Collect logs → Analyze → Generate detailed reports.
 
 ⚙️ Tech Stack
+
+```
 Component	         Technology
 Backend	             Python (Flask)
 Database	         MongoDB / MongoDB Atlas
@@ -77,7 +81,7 @@ Frontend	         HTML / JS Dashboard (optional)
 Virtualization	     VirtualBox / VMware / Docker
 Logging	             JSON-based event collection
 Reporting	         CSV / JSON exports
-───────────────────────────┘
+```
 
 🧰 Installation & Setup
 
@@ -170,10 +174,12 @@ Use read-only shares if needed.
 
 👨‍💻 Author
 
+```
 Project: ThreatSphere
 Purpose: Educational Malware Analysis Environment
 Created by: iceybubble
 Built with: Python, Flask, MongoDB
+```
 
 📜 License
 
