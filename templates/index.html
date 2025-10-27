@@ -11,9 +11,9 @@
   <section id="overview">
     <h2>Overview</h2>
     <div class="stats">
-      <div class="card" id="totalLogs">Total Logs: --</div>
-      <div class="card" id="malwareCount">Malware Detections: --</div>
-      <div class="card" id="categoryCount">Categories: --</div>
+      <div class="card clickable" id="totalLogsCard">Total Logs: --</div>
+      <div class="card clickable" id="malwareCard">Malware Detections: --</div>
+      <div class="card clickable" id="categoryCard">Categories: --</div>
     </div>
   </section>
 
@@ -36,6 +36,39 @@
     <h2>☣️ Detected Malware</h2>
     <ul id="malwareList"></ul>
   </section>
+
+  <!-- ================== MODALS ================== -->
+
+  <!-- Logs Modal -->
+  <div id="logsModal" class="modal">
+    <div class="modal-content">
+      <span class="close" data-target="logsModal">&times;</span>
+      <h2>All Logs</h2>
+      <table>
+        <thead>
+          <tr><th>Timestamp</th><th>Category</th><th>Message</th><th>Type</th></tr></thead>
+        <tbody id="logsModalBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Malware Modal -->
+  <div id="malwareModal" class="modal">
+    <div class="modal-content">
+      <span class="close" data-target="malwareModal">&times;</span>
+      <h2>Malware Detections</h2>
+      <ul id="malwareModalBody"></ul>
+    </div>
+  </div>
+
+  <!-- Categories Modal -->
+  <div id="categoriesModal" class="modal">
+    <div class="modal-content">
+      <span class="close" data-target="categoriesModal">&times;</span>
+      <h2>Log Categories</h2>
+      <ul id="categoriesModalBody"></ul>
+    </div>
+  </div>
 
   <script src="/static/script.js"></script>
 </body>

@@ -15,24 +15,36 @@ async function loadDashboard() {
       secureFetch(`${BACKEND}/malware`)
     ]);
 
+    if (!logsRes.ok) throw new Error("Logs unauthorized");
     const logs = await logsRes.json();
     const categories = await categoriesRes.json();
     const malware = await malwareRes.json();
 
-    document.getElementById("totalLogs").innerText = `Total Logs: ${logs.length}`;
-    document.getElementById("malwareCount").innerText = `Malware Detections: ${malware.length}`;
-    document.getElementById("categoryCount").innerText = `Categories: ${Object.keys(categories).length}`;
+    // Update overview cards
+    document.getElementById("totalLogsCard").innerText = `Total Logs: ${logs.length}`;
+    document.getElementById("malwareCard").innerText = `Malware Detections: ${malware.length}`;
+    document.getElementById("categoryCard").innerText = `Categories: ${Object.keys(categories).length}`;
 
+    // Update Latest Logs table
     const tbody = document.querySelector("#logsTable tbody");
     tbody.innerHTML = "";
     logs.slice(0, 10).forEach(log => {
       tbody.innerHTML += `
         <tr>
-          <td>${log.received_at}</td>
+          <td>${log.received_at || "--"}</td>
           <td>${log.category || "--"}</td>
           <td>${log.summary || "--"}</td>
           <td>${log.level || "--"}</td>
         </tr>`;
+    });
+
+    // Update Malware section
+    const malwareList = document.getElementById("malwareList");
+    malwareList.innerHTML = "";
+    malware.forEach(m => {
+      const li = document.createElement("li");
+      li.textContent = `${m.filename} — ${m.threat}`;
+      malwareList.appendChild(li);
     });
   } catch (err) {
     console.error("Failed to load dashboard:", err);
@@ -41,3 +53,53 @@ async function loadDashboard() {
 
 loadDashboard();
 setInterval(loadDashboard, 10000);
+
+// ========== Modal Logic ==========
+function openModal(id) {
+  document.getElementById(id).style.display = "flex";
+}
+function closeModal(id) {
+  document.getElementById(id).style.display = "none";
+}
+document.querySelectorAll(".close").forEach(btn => {
+  btn.addEventListener("click", e => closeModal(e.target.dataset.target));
+});
+window.onclick = e => {
+  if (e.target.classList.contains("modal")) e.target.style.display = "none";
+};
+
+// ========== Click Handlers for Cards ==========
+document.getElementById("totalLogsCard").addEventListener("click", async () => {
+  const res = await secureFetch(`${BACKEND}/logs/recent`);
+  const logs = await res.json();
+  const body = document.getElementById("logsModalBody");
+  body.innerHTML = logs.map(log =>
+    `<tr>
+      <td>${log.received_at || "--"}</td>
+      <td>${log.category || "--"}</td>
+      <td>${log.summary || "--"}</td>
+      <td>${log.level || "--"}</td>
+    </tr>`
+  ).join("");
+  openModal("logsModal");
+});
+
+document.getElementById("malwareCard").addEventListener("click", async () => {
+  const res = await secureFetch(`${BACKEND}/malware`);
+  const malware = await res.json();
+  const body = document.getElementById("malwareModalBody");
+  body.innerHTML = malware.map(m =>
+    `<li>${m.filename || "Unknown"} — ${m.threat || "Suspicious"}</li>`
+  ).join("");
+  openModal("malwareModal");
+});
+
+document.getElementById("categoryCard").addEventListener("click", async () => {
+  const res = await secureFetch(`${BACKEND}/categories`);
+  const categories = await res.json();
+  const body = document.getElementById("categoriesModalBody");
+  body.innerHTML = Object.entries(categories)
+    .map(([key, val]) => `<li>${key}: ${val.length} logs</li>`)
+    .join("");
+  openModal("categoriesModal");
+});
