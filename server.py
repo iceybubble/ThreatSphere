@@ -8,11 +8,17 @@ from pymongo import MongoClient, DESCENDING
 from bson.objectid import ObjectId
 from werkzeug.utils import secure_filename
 from functools import wraps
+from dotenv import load_dotenv
+
+# -------------------------------
+# Load environment variables
+# -------------------------------
+load_dotenv()
 
 # -------------------------------
 # Configuration
 # -------------------------------
-MONGO_URI = os.getenv("MONGO_URI")  # MongoDB Atlas connection string
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/threatsphere")
 DB_NAME = os.getenv("DB_NAME", "threatsphere")
 API_KEY = os.getenv("API_KEY", "changeme")
 UPLOAD_FOLDER = os.path.join(os.getcwd(), "uploads")
@@ -23,7 +29,7 @@ LOG_FILE = os.getenv("LOG_FILE", "server.log")
 # -------------------------------
 # Flask App Setup
 # -------------------------------
-app = Flask(__name__, template_folder="frontend")
+app = Flask(__name__, template_folder="templates")
 CORS(app)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
@@ -58,6 +64,7 @@ def require_api_key(func):
     def wrapper(*args, **kwargs):
         req_key = request.headers.get("X-API-KEY") or request.args.get("api_key")
         if not API_KEY or req_key != API_KEY:
+            logging.warning("Unauthorized access attempt detected.")
             return jsonify({"error": "unauthorized"}), 401
         return func(*args, **kwargs)
     return wrapper
@@ -115,6 +122,8 @@ def receive_log():
         "source": payload.get("source", "unknown"),
         "level": payload.get("level", "INFO"),
         "summary": payload.get("summary", "")[:200],
+        "category": payload.get("category", "uncategorized"),
+        "type": payload.get("type", "general"),
         "processes": payload.get("processes", []),
         "files_changed": payload.get("files_changed", []),
         "network_calls": payload.get("network_calls", []),
@@ -158,14 +167,32 @@ def upload_file():
     return jsonify({"error": "invalid file type"}), 400
 
 
-@app.route("/health/full", methods=["GET"])
-def full_health():
-    try:
-        info = client.server_info()
-        return jsonify({"status": "ok", "mongodb_version": info.get("version")}), 200
-    except Exception as e:
-        logging.exception("DB health failed")
-        return jsonify({"status": "error", "detail": str(e)}), 500
+@app.route("/categories", methods=["GET"])
+@require_api_key
+def get_categories():
+    """Categorize logs based on type field"""
+    pipeline = [
+        {"$group": {"_id": "$category", "count": {"$sum": 1}}},
+        {"$sort": {"count": -1}}
+    ]
+    categories = list(logs_coll.aggregate(pipeline))
+    formatted = {c["_id"]: c["count"] for c in categories if c["_id"]}
+    return jsonify(formatted), 200
+
+
+@app.route("/malware", methods=["GET"])
+@require_api_key
+def get_malware():
+    """Return list of uploaded artifacts as possible malware"""
+    cursor = artifacts_coll.find({}, {"_id": 0, "filename": 1, "uploaded_at": 1, "size": 1})
+    malware_list = []
+    for doc in cursor:
+        malware_list.append({
+            "filename": doc["filename"],
+            "threat": "Suspicious" if doc["size"] > 50000 else "Normal",
+            "uploaded_at": doc["uploaded_at"].isoformat() + "Z"
+        })
+    return jsonify(malware_list), 200
 
 
 @app.route("/")
