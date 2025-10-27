@@ -2,10 +2,15 @@ const BACKEND = "http://127.0.0.1:5000";
 const API_KEY = "67b3a9472aa29263913b4db06c947773c3b21aff86bebd2156de015283ba01e2";
 
 async function secureFetch(url) {
-  return fetch(url, {
-    headers: { "X-API-KEY": API_KEY }
-  });
+  return fetch(url, { headers: { "X-API-KEY": API_KEY } });
 }
+
+let logLimit = 50; // Default
+
+document.getElementById("logLimit").addEventListener("change", e => {
+  logLimit = parseInt(e.target.value);
+  loadDashboard();
+});
 
 async function loadDashboard() {
   try {
@@ -15,70 +20,65 @@ async function loadDashboard() {
       secureFetch(`${BACKEND}/malware`)
     ]);
 
-    if (!logsRes.ok) throw new Error("Logs unauthorized");
+    if (!logsRes.ok) throw new Error("Unauthorized");
+
     const logs = await logsRes.json();
     const categories = await categoriesRes.json();
     const malware = await malwareRes.json();
 
-    // Update overview cards
     document.getElementById("totalLogsCard").innerText = `Total Logs: ${logs.length}`;
     document.getElementById("malwareCard").innerText = `Malware Detections: ${malware.length}`;
     document.getElementById("categoryCard").innerText = `Categories: ${Object.keys(categories).length}`;
 
-    // Update Latest Logs table
     const tbody = document.querySelector("#logsTable tbody");
     tbody.innerHTML = "";
-    logs.slice(0, 10).forEach(log => {
+    logs.slice(0, logLimit).forEach(log => {
       tbody.innerHTML += `
         <tr>
           <td>${log.received_at || "--"}</td>
-          <td>${log.category || "--"}</td>
-          <td>${log.summary || "--"}</td>
-          <td>${log.level || "--"}</td>
+          <td>${log.category || "unknown"}</td>
+          <td>${log.source || "N/A"}</td>
+          <td>${log.summary || "No summary"}</td>
+          <td>${log.level || "INFO"}</td>
+          <td>${log.ip || "127.0.0.1"}</td>
         </tr>`;
     });
 
-    // Update Malware section
     const malwareList = document.getElementById("malwareList");
     malwareList.innerHTML = "";
     malware.forEach(m => {
       const li = document.createElement("li");
-      li.textContent = `${m.filename} — ${m.threat}`;
+      li.textContent = `${m.filename || "Unknown"} — ${m.threat || "Suspicious"}`;
       malwareList.appendChild(li);
     });
   } catch (err) {
-    console.error("Failed to load dashboard:", err);
+    console.error("Dashboard load error:", err);
   }
 }
 
-loadDashboard();
-setInterval(loadDashboard, 10000);
+// MODAL FUNCTIONS
+function openModal(id) { document.getElementById(id).style.display = "flex"; }
+function closeModal(id) { document.getElementById(id).style.display = "none"; }
 
-// ========== Modal Logic ==========
-function openModal(id) {
-  document.getElementById(id).style.display = "flex";
-}
-function closeModal(id) {
-  document.getElementById(id).style.display = "none";
-}
 document.querySelectorAll(".close").forEach(btn => {
   btn.addEventListener("click", e => closeModal(e.target.dataset.target));
 });
-window.onclick = e => {
-  if (e.target.classList.contains("modal")) e.target.style.display = "none";
-};
 
-// ========== Click Handlers for Cards ==========
+window.onclick = e => { if (e.target.classList.contains("modal")) e.target.style.display = "none"; };
+
+// Card click handlers
 document.getElementById("totalLogsCard").addEventListener("click", async () => {
   const res = await secureFetch(`${BACKEND}/logs/recent`);
   const logs = await res.json();
   const body = document.getElementById("logsModalBody");
-  body.innerHTML = logs.map(log =>
+  body.innerHTML = logs.slice(0, logLimit).map(log =>
     `<tr>
       <td>${log.received_at || "--"}</td>
-      <td>${log.category || "--"}</td>
-      <td>${log.summary || "--"}</td>
-      <td>${log.level || "--"}</td>
+      <td>${log.category || "unknown"}</td>
+      <td>${log.source || "N/A"}</td>
+      <td>${log.summary || "No summary"}</td>
+      <td>${log.level || "INFO"}</td>
+      <td>${log.ip || "127.0.0.1"}</td>
     </tr>`
   ).join("");
   openModal("logsModal");
@@ -103,3 +103,6 @@ document.getElementById("categoryCard").addEventListener("click", async () => {
     .join("");
   openModal("categoriesModal");
 });
+
+loadDashboard();
+setInterval(loadDashboard, 15000);
