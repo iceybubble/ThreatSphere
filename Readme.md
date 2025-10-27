@@ -124,6 +124,16 @@ Backend will start on:
 👉 http://127.0.0.1:5000
 ```
 
+How to access the frontend
+
+After starting the backend (python server.py), open your browser and navigate to:
+
+```
+http://127.0.0.1:5000/
+```
+
+
+The Flask app serves the dashboard at the root route (/) — the frontend files (templates/index.html and /static/*) are served by Flask, so you do not need a separate static server.
 🧪 Testing Log Collection
 
 Send a test log:
@@ -145,6 +155,7 @@ If configured correctly, the event will be stored in MongoDB.
   "category": "filesystem",
   "severity": "medium"
 }
+
 ```
 
 🔒 Safety Notes
