@@ -2,17 +2,17 @@ import os
 import logging
 import json
 from datetime import datetime
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from pymongo import MongoClient, DESCENDING
 from bson.objectid import ObjectId
 from werkzeug.utils import secure_filename
-from flask import render_template
+from functools import wraps
 
 # -------------------------------
-# Config from env
+# Configuration
 # -------------------------------
-MONGO_URI = os.getenv("MONGO_URI")  # Must point to MongoDB Atlas
+MONGO_URI = os.getenv("MONGO_URI")  # MongoDB Atlas connection string
 DB_NAME = os.getenv("DB_NAME", "threatsphere")
 API_KEY = os.getenv("API_KEY", "changeme")
 UPLOAD_FOLDER = os.path.join(os.getcwd(), "uploads")
@@ -21,14 +21,14 @@ ALLOWED_EXTENSIONS = {"pcap", "pcapng", "csv", "xml", "json", "txt"}
 LOG_FILE = os.getenv("LOG_FILE", "server.log")
 
 # -------------------------------
-# Flask app
+# Flask App Setup
 # -------------------------------
-app = Flask(__name__)
+app = Flask(__name__, template_folder="frontend")
 CORS(app)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 # -------------------------------
-# Logging
+# Logging Setup
 # -------------------------------
 logging.basicConfig(
     filename=LOG_FILE,
@@ -38,54 +38,55 @@ logging.basicConfig(
 logger = logging.getLogger()
 
 # -------------------------------
-# MongoDB client
+# MongoDB Client Setup
 # -------------------------------
 client = MongoClient(MONGO_URI)
 db = client[DB_NAME]
 logs_coll = db["sandbox_logs"]
 artifacts_coll = db["artifacts"]
 
-# Ensure indexes
+# Ensure indexes exist
 logs_coll.create_index([("received_at", DESCENDING)])
 artifacts_coll.create_index([("uploaded_at", DESCENDING)])
 logging.info("Indexes ensured on sandbox_logs & artifacts")
 
 # -------------------------------
-# API key decorator
+# Helper Functions
 # -------------------------------
 def require_api_key(func):
-    from functools import wraps
+    @wraps(func)
     def wrapper(*args, **kwargs):
         req_key = request.headers.get("X-API-KEY") or request.args.get("api_key")
         if not API_KEY or req_key != API_KEY:
             return jsonify({"error": "unauthorized"}), 401
         return func(*args, **kwargs)
-    return wraps(func)(wrapper)
+    return wrapper
 
-# -------------------------------
-# Helpers
-# -------------------------------
+
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # -------------------------------
 # Routes
 # -------------------------------
+
 @app.route("/health", methods=["GET"])
 def health():
     return jsonify({"status": "ok", "time": datetime.utcnow().isoformat() + "Z"}), 200
 
+
 @app.route("/logs/recent", methods=["GET"])
 @require_api_key
 def recent_logs():
-    limit = min(int(request.args.get("limit", 50)), 100)  # prevent huge queries
-    cursor = logs_coll.find({}, {"processes":0, "files_changed":0, "network_calls":0}).sort("received_at", -1).limit(limit)
+    limit = min(int(request.args.get("limit", 50)), 100)
+    cursor = logs_coll.find({}, {"processes": 0, "files_changed": 0, "network_calls": 0}).sort("received_at", -1).limit(limit)
     out = []
     for d in cursor:
         d["_id"] = str(d["_id"])
         d["received_at"] = d["received_at"].isoformat() + "Z"
         out.append(d)
     return jsonify(out), 200
+
 
 @app.route("/logs/<id>", methods=["GET"])
 @require_api_key
@@ -99,6 +100,7 @@ def get_log(id):
     d["_id"] = str(d["_id"])
     d["received_at"] = d["received_at"].isoformat() + "Z"
     return jsonify(d), 200
+
 
 @app.route("/log", methods=["POST"])
 @require_api_key
@@ -124,6 +126,7 @@ def receive_log():
     res = logs_coll.insert_one(doc)
     logging.info(f"NEW_LOG | source={doc['source']} level={doc['level']} id={res.inserted_id}")
     return jsonify({"status": "ok", "id": str(res.inserted_id)}), 201
+
 
 @app.route("/upload", methods=["POST"])
 @require_api_key
@@ -154,6 +157,7 @@ def upload_file():
 
     return jsonify({"error": "invalid file type"}), 400
 
+
 @app.route("/health/full", methods=["GET"])
 def full_health():
     try:
@@ -162,15 +166,17 @@ def full_health():
     except Exception as e:
         logging.exception("DB health failed")
         return jsonify({"status": "error", "detail": str(e)}), 500
-    
-@app.route('/')
+
+
+@app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template("index.html")  # serves your frontend page
+
 
 # -------------------------------
-# Run app
+# Run the App
 # -------------------------------
 if __name__ == "__main__":
     PORT = int(os.getenv("PORT", 5000))
-    logging.info(f"Starting ThreatSphere backend on 0.0.0.0:{PORT}")
-    app.run(host="0.0.0.0", port=PORT, debug=False)
+    logging.info(f"Starting ThreatSphere backend on http://127.0.0.1:{PORT}")
+    app.run(host="0.0.0.0", port=PORT, debug=True)
